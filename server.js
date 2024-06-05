@@ -1,7 +1,7 @@
 'use strict';
 
-const express = require('express');
 const fetch = require('node-fetch'); // node-fetch モジュールを追加
+const express = require('express');
 const app = express();
 
 app.get('/materials', async (req, res) => {
