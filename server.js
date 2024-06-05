@@ -1,24 +1,19 @@
 'use strict';
 
-const fetch = require('node-fetch'); // node-fetch モジュールを追加
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 
-app.get('/materials', async (req, res) => {
-    const applicationId = process.env.APPLICATION_ID;
-    const response = await fetch(`https://api.make.dmm.com/materials/v1?applicationId=${applicationId}`);
-    const data = await response.json();
+// .env ファイルで設定したアプリケーションIDを取得する
+const applicationId = process.env.APPLICATION_ID;
 
-    if (data.resultCode === '200') {
-        res.json(data.materials);
-    } else {
-        res.status(500).json({ error: data.resultMessage });
-    }
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html')); // index.htmlを返す
 });
 
-app.listen(4000, () => {
-    console.log('Server is running on port 4000');
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-
-
 
