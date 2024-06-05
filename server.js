@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const path = require('path'); 
 
 // .env ファイルで設定したアプリケーションIDを取得する
 const applicationId = process.env.APPLICATION_ID;
