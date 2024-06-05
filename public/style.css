@@ -1,0 +1,197 @@
+html {
+    font-size: 100%;
+}
+
+body {
+    color: #24292e;
+    font-family: "Sawarabi Gothic"; 
+}
+
+a {
+    text-decoration: none;  /* 下線とかなくす */
+    
+}
+
+p {
+    font-size: 1.3rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+li {
+    list-style: none;  /* 黒ポチなくす */
+    font-size: 1.2rem;
+}
+
+
+
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto 130px auto;
+    font-size: 0.9rem;
+    padding: 0 4%;
+}
+
+.site-title {
+    line-height: 1px;
+    font-weight: 600px;
+    font-size: 2.4rem;
+}
+
+.site-title a {
+    color: #fff;
+}
+
+.sec-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 65px;
+    margin-top: 65px;
+}
+
+
+/* header */
+.header {
+    background-image: url("./img/header1.jpg");
+    height: 530px; /* 背景画像を全体に拡大表示 */
+    background-position: center;
+}
+
+
+
+/* ヘッダーのデフォルトの背景色 */
+.header {
+    background-color: transparent;
+}
+
+/* カーソルを合わせたときの背景色 */
+.header :hover {
+    background-color: rgba(255, 255, 255, 1); 
+    transition: 0.4s;
+}
+
+
+
+nav {
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    list-style: none;
+    
+}
+
+nav:hover ul li a {
+    color: #000; 
+}
+
+nav:hover .site-title a {
+    color: #000;
+}
+
+
+
+.site-title {
+    width: 200px;
+    margin: 30px auto 20px auto;
+    cursor: pointer;
+
+}
+
+
+
+nav ul li {
+    display: inline-block;
+    margin: 20px 30px;
+    
+}
+
+nav ul li a {
+    color: #fff;
+}
+
+nav ul li a:hover {
+    opacity: 0.5;
+}
+nav li img.icon {
+    width: 30px;
+}
+
+
+
+/* works */
+#works ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+#works ul li {
+    width: 31%;
+    margin-bottom: 23px;
+}
+
+#works ul li img {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#works ul li img:hover {
+    transform: scale(1.2, 1.2);
+    opacity: 0.7; 
+}
+
+
+
+
+/* contact */
+#contact p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#contact dl {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#contact dt {
+    width: 15%;
+    margin-bottom: 10px;
+}
+
+#contact dd {
+    width: 85%;
+    margin-bottom: 10px;
+}
+
+#contact dd input,
+#contact dd textarea {
+    width: 100%;
+    border: 1px solid #c8c8c8;
+    padding: 10rem;
+}
+
+#contact dd textarea {
+    height: 10rem;
+}
+
+#contact .button {
+    text-align: center;
+}
+
+#contact .button input {
+    border: 1px solid #24292e;
+    background-color: #24292e;
+    width: 200px;
+    padding: 15px 0;
+    color: #fff;
+    transition: 0.3s;
+}
+
+#contact .button input:hover {
+    background-color: #fff;
+    color: #24292e;
+}
