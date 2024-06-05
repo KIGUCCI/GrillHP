@@ -1,31 +1,29 @@
 'use strict';
 
-require('dotenv').config();
-
 const express = require('express');
+const fetch = require('node-fetch');
+const dotenv = require('dotenv'); // dotenv パッケージをインポート
+dotenv.config(); // .env ファイルから環境変数を読み込む
+
 const app = express();
-const path = require('path');
 
-// .env ファイルで設定したアプリケーションIDを取得する
-const applicationId = process.env.APPLICATION_ID;
+app.get('/materials', async (req, res) => {
+    const applicationId = process.env.APPLICATION_ID; // .env ファイルからアプリケーションIDを読み込む
+    
+    const response = await fetch(`https://api.make.dmm.com/materials/v1?applicationId=${applicationId}`);
+    const data = await response.json();
 
-// 静的ファイルを提供する
-app.use(express.static(path.join(__dirname, 'public')));
-
-// 環境変数をクライアントに提供するAPIエンドポイントを作成する
-app.get('/api/environment', (req, res) => {
-    res.json({ applicationId });
+    if (data.resultCode === '200') {
+        res.json(data.materials);
+    } else {
+        res.status(500).json({ error: data.resultMessage });
+    }
 });
 
-// ルートリクエストでindex.htmlを返す
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.listen(4000, () => {
+    console.log('Server is running on port 4000');
 });
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
 
 
 
