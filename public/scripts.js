@@ -1,20 +1,29 @@
-// scripts.js
-const appId = process.env.APP_ID;
-const apiUrl = `https://api.make.dmm.com/materials/v1?applicationId=${appId}`;
+'use strict';
 
-fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-        if (data.resultCode === '200') {
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // サーバーから環境変数を取得
+        const response = await fetch('/api/environment');
+        const data = await response.json();
+        const appId = data.applicationId;
+
+        // API URLを作成
+        const apiUrl = `https://api.make.dmm.com/materials/v1?applicationId=${appId}`;
+
+        // APIリクエストを実行
+        const materialsResponse = await fetch(apiUrl);
+        const materialsData = await materialsResponse.json();
+
+        if (materialsData.resultCode === '200') {
             const materialsList = document.getElementById('materials-list');
-            data.materials.forEach(material => {
+            materialsData.materials.forEach(material => {
                 const materialElement = document.createElement('div');
                 materialElement.classList.add('material');
                 materialElement.innerHTML = `
                     <h2>${material.materialName}</h2>
                     <p>素材ID: ${material.materialId}</p>
-                    <p>最小体積: ${material.minVolume} mm3</p>
-                    <p>最大体積: ${material.maxVolume} mm3</p>
+                    <p>最小体積: ${material.minVolume} mm³</p>
+                    <p>最大体積: ${material.maxVolume} mm³</p>
                     <p>高さ: ${material.maxX} mm</p>
                     <p>幅: ${material.maxY} mm</p>
                     <p>奥行き: ${material.maxZ} mm</p>
@@ -23,7 +32,9 @@ fetch(apiUrl)
                 materialsList.appendChild(materialElement);
             });
         } else {
-            console.error('APIエラー:', data.resultMessage);
+            console.error('APIエラー:', materialsData.resultMessage);
         }
-    })
-    .catch(error => console.error('通信エラー:', error));
+    } catch (error) {
+        console.error('通信エラー:', error);
+    }
+});
