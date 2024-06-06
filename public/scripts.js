@@ -2,17 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        // サーバーから環境変数を取得
-        const response = await fetch('/api/environment');
-        const data = await response.json();
-        const appId = data.applicationId;
-
-        // API URLを作成
-        const apiUrl = `https://api.make.dmm.com/materials/v1?applicationId=${appId}`;
-
-        // APIリクエストを実行
-        const materialsResponse = await fetch(apiUrl);
-        const materialsData = await materialsResponse.json();
+        const response = await fetch('/proxy');
+        const materialsData = await response.json();
 
         if (materialsData.resultCode === '200') {
             const materialsList = document.getElementById('materials-list');
