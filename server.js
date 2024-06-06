@@ -31,15 +31,11 @@ app.get('/api/environment', (req, res) => {
 
 // プロキシエンドポイント
 app.get('/proxy', async (req, res) => {
-  const url = req.query.url;
-  if (!url) {
-    res.status(400).send('URL is required');
-    return;
-  }
+  const apiUrl = `https://api.make.dmm.com/materials/v1?applicationId=${applicationId}`;
   try {
-    const response = await fetch(url);
-    const text = await response.text();
-    res.send(text);
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    res.json(data);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
