@@ -3,6 +3,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const request = require('request');  // 追加
 const app = express();
 const path = require('path');
 
@@ -12,9 +13,26 @@ const applicationId = process.env.APPLICATION_ID;
 // 静的ファイルを提供する
 app.use(express.static(path.join(__dirname, 'public')));
 
+// CORSを許可するためのミドルウェア
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 // 環境変数をクライアントに提供するAPIエンドポイントを作成する
 app.get('/api/environment', (req, res) => {
     res.json({ applicationId });
+});
+
+// プロキシエンドポイント
+app.get('/proxy', (req, res) => {
+  const url = req.query.url;
+  if (!url) {
+    res.status(400).send('URL is required');
+    return;
+  }
+  request({ url: url }).pipe(res);
 });
 
 // ルートリクエストでindex.htmlを返す
