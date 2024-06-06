@@ -1,5 +1,3 @@
-'use strict';
-
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('/proxy');
