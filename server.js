@@ -1,11 +1,15 @@
-'use strict';
+import dotenv from 'dotenv';
+import express from 'express';
+import fetch from 'node-fetch';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-require('dotenv').config();
+dotenv.config();
 
-const express = require('express');
-const fetch = require('node-fetch'); // 追加
 const app = express();
-const path = require('path');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // .env ファイルで設定したアプリケーションIDを取得する
 const applicationId = process.env.APPLICATION_ID;
@@ -26,16 +30,16 @@ app.get('/api/environment', (req, res) => {
 });
 
 // プロキシエンドポイント
-app.get('/proxy', async (req, res) => { // async を追加
+app.get('/proxy', async (req, res) => {
   const url = req.query.url;
   if (!url) {
     res.status(400).send('URL is required');
     return;
   }
   try {
-    const response = await fetch(url); // await を使用してfetchを非同期で実行
-    const text = await response.text(); // レスポンスからテキストを取得
-    res.send(text); // テキストをクライアントに返す
+    const response = await fetch(url);
+    const text = await response.text();
+    res.send(text);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
