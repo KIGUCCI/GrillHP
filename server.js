@@ -3,7 +3,7 @@
 require('dotenv').config();
 
 const express = require('express');
-const request = require('request');  // 追加
+const fetch = require('node-fetch'); // 追加
 const app = express();
 const path = require('path');
 
@@ -26,13 +26,20 @@ app.get('/api/environment', (req, res) => {
 });
 
 // プロキシエンドポイント
-app.get('/proxy', (req, res) => {
+app.get('/proxy', async (req, res) => { // async を追加
   const url = req.query.url;
   if (!url) {
     res.status(400).send('URL is required');
     return;
   }
-  request({ url: url }).pipe(res);
+  try {
+    const response = await fetch(url); // await を使用してfetchを非同期で実行
+    const text = await response.text(); // レスポンスからテキストを取得
+    res.send(text); // テキストをクライアントに返す
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 // ルートリクエストでindex.htmlを返す
