@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         const materialsData = await response.json();
 
-        if (materialsData.status === '200') { // ここで修正
+        if (materialsData.resultCode === 'OK') { // 修正点はここです
             const materialsList = document.getElementById('materials-list');
             materialsData.materials.forEach(material => {
                 const materialElement = document.createElement('div');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 materialsList.appendChild(materialElement);
             });
         } else {
-            console.error('APIエラー:', materialsData.resultMessage); // ここで修正
+            console.error('APIエラー:', materialsData.resultMessage);
         }
     } catch (error) {
         console.error('通信エラー:', error);
