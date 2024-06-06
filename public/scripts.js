@@ -3,9 +3,12 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('/proxy');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const materialsData = await response.json();
 
-        if (materialsData.resultCode === '200') {
+        if (materialsData.status === 'OK') { // ここで修正
             const materialsList = document.getElementById('materials-list');
             materialsData.materials.forEach(material => {
                 const materialElement = document.createElement('div');
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 materialsList.appendChild(materialElement);
             });
         } else {
-            console.error('APIエラー:', materialsData.resultMessage);
+            console.error('APIエラー:', materialsData.resultMessage); // ここで修正
         }
     } catch (error) {
         console.error('通信エラー:', error);
