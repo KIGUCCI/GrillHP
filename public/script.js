@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         const modelsData = await response.json();
 
+        // デバッグ用のログ出力
+        console.log('modelsData:', modelsData);
+
         const modelsList = document.getElementById('models-list');
         if (!modelsData.models || modelsData.models.length === 0) {
             throw new Error('No models data available');
