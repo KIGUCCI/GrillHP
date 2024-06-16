@@ -1,26 +1,27 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/api/environment');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        const environmentResponse = await fetch('/api/environment');
+        if (!environmentResponse.ok) {
+            throw new Error(`API environment request failed with status ${environmentResponse.status}`);
         }
-        const { applicationId } = await response.json();
+        const { applicationId } = await environmentResponse.json();
 
-        const responseModels = await fetch(`/proxy?url=https://api.make.dmm.com/materials/v1?applicationId=${applicationId}`, {
+        const response = await fetch(`/proxy?url=https://api.make.dmm.com/materials/v1?applicationId=${applicationId}`, {
             method: 'GET',
-            mode: 'cors', // リクエストモードを cors に設定
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-        if (!responseModels.ok) {
-            throw new Error(`HTTP error! status: ${responseModels.status}`);
+        if (!response.ok) {
+            throw new Error(`API materials request failed with status ${response.status}`);
         }
-        const modelsData = await responseModels.json();
+        const modelsData = await response.json();
 
         const modelsList = document.getElementById('models-list');
+        if (!modelsData.models || modelsData.models.length === 0) {
+            throw new Error('No models data available');
+        }
         modelsData.models.forEach(model => {
             const modelElement = document.createElement('div');
             modelElement.classList.add('model');
@@ -42,3 +43,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('通信エラー:', error);
     }
 });
+
