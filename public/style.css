@@ -9,7 +9,6 @@ body {
 
 a {
     text-decoration: none;  /* 下線とかなくす */
-    
 }
 
 p {
@@ -24,8 +23,6 @@ li {
     list-style: none;  /* 黒ポチなくす */
     font-size: 1.2rem;
 }
-
-
 
 .wrapper {
     max-width: 1000px;
@@ -51,15 +48,12 @@ li {
     margin-top: 65px;
 }
 
-
 /* header */
 .header {
     background-image: url("./img/header1.jpg");
     height: 530px; /* 背景画像を全体に拡大表示 */
     background-position: center;
 }
-
-
 
 /* ヘッダーのデフォルトの背景色 */
 .header {
@@ -72,14 +66,11 @@ li {
     transition: 0.4s;
 }
 
-
-
 nav {
     width: 100%;
     padding: 20px 0;
     text-align: center;
     list-style: none;
-    
 }
 
 nav:hover ul li a {
@@ -90,21 +81,15 @@ nav:hover .site-title a {
     color: #000;
 }
 
-
-
 .site-title {
     width: 200px;
     margin: 30px auto 20px auto;
     cursor: pointer;
-
 }
-
-
 
 nav ul li {
     display: inline-block;
     margin: 20px 30px;
-    
 }
 
 nav ul li a {
@@ -117,8 +102,6 @@ nav ul li a:hover {
 nav li img.icon {
     width: 30px;
 }
-
-
 
 /* works */
 #works ul {
@@ -143,8 +126,28 @@ nav li img.icon {
     opacity: 0.7; 
 }
 
+/* models-list */
+#models-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
+.model {
+    width: 30%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
 
+.model img {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
 
 /* contact */
 #contact p {
