@@ -1,8 +1,11 @@
 'use strict';
 
+// .env ファイルで設定したアプリケーションIDを取得する
+const applicationId = process.env.APPLICATION_ID;
+
      document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch( `/proxy?url=https://api.make.dmm.com/models/list/v1?applicationId=72c3818d58cd452f9f29a8314c95fdb8`, {
+        const response = await fetch( `/proxy?url=https://api.make.dmm.com/materials/v1?applicationId=${applicationId}`, {
             method: 'GET',
             mode: 'cors', // リクエストモードを cors に設定
             headers: {
