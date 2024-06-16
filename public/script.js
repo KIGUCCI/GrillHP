@@ -2,7 +2,7 @@
 
      document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch( `/proxy?url=https://api.make.dmm.com/models/list/v1?applicationId=${applicationId}&offset=0&limit=10&order=new`, {
+        const response = await fetch( `/proxy?url=https://api.make.dmm.com/models/list/v1?applicationId=72c3818d58cd452f9f29a8314c95fdb8`, {
             method: 'GET',
             mode: 'cors', // リクエストモードを cors に設定
             headers: {
