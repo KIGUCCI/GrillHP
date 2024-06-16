@@ -1,25 +1,18 @@
 'use strict';
 
-'use strict';
-
-document.addEventListener('DOMContentLoaded', async () => {
-    const applicationId = '72c3818d58cd452f9f29a8314c95fdb8';
-    const url = `/proxy?url=https://api.make.dmm.com/models/list/v1?applicationId=${applicationId}&offset=0&limit=10&order=new`;
-
+     document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch(url, {
+        const response = await fetch( `/proxy?url=https://api.make.dmm.com/models/list/v1?applicationId=${applicationId}&offset=0&limit=10&order=new`, {
             method: 'GET',
-            mode: 'cors',
+            mode: 'cors', // リクエストモードを cors に設定
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
-        const modelsData = await response.json();
+       const modelsData = await response.json();
 
         const modelsList = document.getElementById('models-list');
         modelsData.models.forEach(model => {
