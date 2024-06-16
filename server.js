@@ -1,9 +1,11 @@
-import dotenv from 'dotenv';
-import express from 'express';
-import fetch from 'node-fetch';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+'use strict';
+
+const dotenv = require('dotenv');
+const express = require('express');
+const fetch = require('node-fetch');
+const path = require('path');
+const { fileURLToPath } = require('url');
+const { dirname } = require('path');
 
 dotenv.config();
 
@@ -31,7 +33,7 @@ app.get('/api/environment', (req, res) => {
 
 // プロキシエンドポイント
 app.get('/proxy', async (req, res) => {
-  const apiUrl = `https://api.make.dmm.com/models/list/v1?applicationId=${applicationId}`;
+  const apiUrl = `https://api.make.dmm.com/materials/v1?applicationId=${applicationId}`;
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
@@ -51,3 +53,4 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
