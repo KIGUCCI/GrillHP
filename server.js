@@ -31,7 +31,7 @@ app.get('/api/environment', (req, res) => {
 
 // プロキシエンドポイント
 app.get('/proxy', async (req, res) => {
-  const apiUrl = `https://api.make.dmm.com/materials/v1?applicationId=${applicationId}`;
+  const apiUrl = `https://api.make.dmm.com/models/list/v1?applicationId=${applicationId}`;
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
