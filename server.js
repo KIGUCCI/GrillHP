@@ -1,5 +1,3 @@
-// server.js
-
 'use strict';
 
 import dotenv from 'dotenv';
