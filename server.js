@@ -1,11 +1,11 @@
 'use strict';
 
-const dotenv = require('dotenv');
-const express = require('express');
-const fetch = require('node-fetch');
-const path = require('path');
-const { fileURLToPath } = require('url');
-const { dirname } = require('path');
+import dotenv from 'dotenv';
+import express from 'express';
+import fetch from 'node-fetch';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 dotenv.config();
 
