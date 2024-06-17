@@ -142,8 +142,10 @@ nav li img.icon {
 .model {
     width: 30%;
     margin: 0 10px;
+    box-sizing: no box;
     padding: 10px;
-    text-size:5px
+    border: 1px solid #ccc;
+    border-radius: 5px;
     text-align: center;
     flex-shrink: 0;
     cursor: pointer;
@@ -175,6 +177,7 @@ nav li img.icon {
 #next {
     right: 10px;
 }
+
 
 /* contact */
 #contact p {
