@@ -127,26 +127,55 @@ nav li img.icon {
 }
 
 /* models-list */
+#models-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
 #models-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-wrap: nowrap;
+    transition: transform 0.3s ease-in-out;
 }
 
 .model {
     width: 30%;
-    margin-bottom: 20px;
+    margin: 0 10px;
     box-sizing: border-box;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
+    flex-shrink: 0;
+    cursor: pointer;
 }
 
 .model img {
     max-width: 100px;
     height: auto;
     margin-bottom: 10px;
+}
+
+/* 矢印ボタンのスタイル */
+#prev, #next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#prev {
+    left: 10px;
+}
+
+#next {
+    right: 10px;
 }
 
 /* contact */
