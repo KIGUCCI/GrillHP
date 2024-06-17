@@ -142,7 +142,6 @@ nav li img.icon {
 .model {
     width: 30%;
     margin: 0 10px;
-    box-sizing: no box;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
