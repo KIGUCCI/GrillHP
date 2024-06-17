@@ -131,6 +131,7 @@ nav li img.icon {
     position: relative;
     width: 100%;
     overflow: hidden;
+    font-size:1.3rem;
 }
 
 #models-list {
